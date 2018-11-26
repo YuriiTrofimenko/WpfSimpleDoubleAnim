@@ -5,8 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSimpleDoubleAnim"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="1000" Width="1000"
+        Loaded="Window_Loaded"
+        >
+    <Window.Resources>
+            <DoubleAnimation
+                x:Key="boundsAnim"
+                To="0"
+                Duration="0:0:1"
+                RepeatBehavior="Forever"
+                AutoReverse="True"
+                />
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                        <DoubleAnimation
+                            To="0"
+                            Duration="0:0:1"
+                            Storyboard.TargetName="rect2"
+                            Storyboard.TargetProperty="(Canvas.Top)"
+                            />
+                        <DoubleAnimation
+                            To="0"
+                            Duration="0:0:1"
+                            Storyboard.TargetName="rect2"
+                            Storyboard.TargetProperty="(Canvas.Left)"
+                            />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </Window.Triggers>
+    <Canvas>
+        <Rectangle
+            Name="rect1"
+            Fill="Red"
+            Width="100"
+            Height="100"
+            Canvas.Top="0"
+            Canvas.Left="0"
+            />
+        <Rectangle
+            Name="rect2"
+            Fill="Blue"
+            Width="100"
+            Height="100"
+            Canvas.Top="500"
+            Canvas.Left="500"
+            />
+    </Canvas>
 </Window>
